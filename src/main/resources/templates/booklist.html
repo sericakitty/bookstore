@@ -5,21 +5,28 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </html>
 <body>
+  <header>
+    <nav>
+      <a href="/">Home</a>
+    </nav>
+  </header>
   <main>
     <h1>Books</h1>
     <table>
       <tr>
-        <th>Title</th>
-        <th>Author</th>
-        <th>ISBN</th>
-        <th>Published</th>
+        <th style="text-align: left;">Author</th>
+        <th style="text-align: left;">Title</th>
+        <th style="text-align: left;">ISBN</th>
+        <th style="text-align: left;">Published</th>
       </tr>
       <tr th:each="book : ${books}">
-        <td th:text="${book.title}">Title</td>
-        <td th:text="${book.author}">Author</td>
-        <td th:text="${book.isbn}">ISBN</td>
-        <td th:text="${book.publicationYear}">Published</td>
+        <td style="padding-right: 15px;" th:text="${book.author}">Author</td>
+        <td style="padding-right: 15px;" th:text="${book.title}">Title</td>
+        <td style="padding-right: 15px;" th:text="${book.isbn}">ISBN</td>
+        <td style="padding-right: 15px;" th:text="${book.publicationYear}">Published</td>
+        <td style="padding-left: 15px;"><a th:href="@{/delete/{id}(id=${book.id})}">Delete</a></td>  
       </tr>
     </table>
+    <a href="/add">Add Book</a>
   </main>
 </body>
