@@ -3,6 +3,7 @@
 <head>
   <title>Add Book</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
 </head>
 <body>
   <header>
@@ -21,7 +22,9 @@
       <input type="text" id="isbn" name="isbn" th:field="*{isbn}" />
       <label for="publicationYear">Published:</label>
       <input type="text" id="publicationYear" name="publicationYear" th:field="*{publicationYear}" />
-      <input type="submit" value="Save" />
+      <input type="submit" value="Save" class="btn btn-success" />
     </form>
   </main>
+  <script src="/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+</body>
 </html>
