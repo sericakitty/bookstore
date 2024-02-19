@@ -3,7 +3,8 @@
 <head>
   <title>Book List</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-</html>
+  <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+</head>
 <body>
   <header>
     <nav>
@@ -12,22 +13,26 @@
   </header>
   <main>
     <h1>Books</h1>
-    <table>
+    <table class="table table-striped">
       <tr>
         <th style="text-align: left;">Author</th>
         <th style="text-align: left;">Title</th>
         <th style="text-align: left;">ISBN</th>
         <th style="text-align: left;">Published</th>
+        <th></th>
+        <th></th>
       </tr>
       <tr th:each="book : ${books}">
         <td style="padding-right: 15px;" th:text="${book.author}">Author</td>
         <td style="padding-right: 15px;" th:text="${book.title}">Title</td>
         <td style="padding-right: 15px;" th:text="${book.isbn}">ISBN</td>
         <td style="padding-right: 15px;" th:text="${book.publicationYear}">Published</td>
-        <td style="padding-left: 15px;"><a th:href="@{/delete/{id}(id=${book.id})}">Delete</a></td>
-        <td style="padding-left: 15px;"><a th:href="@{/edit/{id}(id=${book.id})}">Edit</a></td>
+        <td style="padding-left: 15px;"><a th:href="@{/edit/{id}(id=${book.id})}" class="btn btn-secondary">Edit</a></td>
+        <td style="padding-left: 15px;"><a th:href="@{/delete/{id}(id=${book.id})}" class="btn btn-danger">Delete</a></td>
       </tr>
     </table>
-    <a href="/add">Add Book</a>
+    <a href="/add" class="btn btn-success">Add Book</a>
   </main>
+  <script src="/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
 </body>
+</html>
