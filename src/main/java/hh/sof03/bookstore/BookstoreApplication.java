@@ -10,6 +10,8 @@ import org.springframework.context.annotation.Bean;
 
 import hh.sof03.bookstore.domain.Book;
 import hh.sof03.bookstore.domain.BookRepository;
+import hh.sof03.bookstore.domain.Category;
+import hh.sof03.bookstore.domain.CategoryRepository;
 
 @SpringBootApplication
 public class BookstoreApplication {
@@ -21,20 +23,31 @@ public class BookstoreApplication {
   }
 
   @Bean
-  public CommandLineRunner demo(BookRepository repository) {
+  public CommandLineRunner demo(BookRepository bookRepository, CategoryRepository categoryRepository) {
     return (args) -> {
       Book book1 = new Book("The Lord of the Rings", "J.R.R. Tolkien", 1954, "0-395-19395-8", 19.99);
       Book book2 = new Book("Harry Potter and the Philosopher's Stone", "J.K. Rowling", 1997, "0-7475-3269-9", 15.99);
       Book book3 = new Book("The Hobbit", "J.R.R. Tolkien", 1937, "0-395-19395-8", 19.99);
     
-      repository.save(book1);
-      repository.save(book2);
-      repository.save(book3);
+      bookRepository.save(book1);
+      bookRepository.save(book2);
+      bookRepository.save(book3);
 
       log.info("fetch all books");
-			for (Book book : repository.findAll()) {
-				log.info(book.toString());
+			for (Book book : bookRepository.findAll()) {
+        log.info(book.toString());
 			}
+
+      Category category1 = new Category("Fantasy");
+      Category category2 = new Category("Children's literature");
+
+      categoryRepository.save(category1);
+      categoryRepository.save(category2);
+
+      log.info("fetch all categories");
+      for (Category category : categoryRepository.findAll()) {
+        log.info(category.toString());
+      }
     };
   }
 
