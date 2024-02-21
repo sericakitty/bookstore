@@ -9,7 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
 import hh.sof03.bookstore.domain.BookRepository;
-
+import hh.sof03.bookstore.domain.CategoryRepository;
 import hh.sof03.bookstore.domain.Book;
 
 @Controller
@@ -17,6 +17,9 @@ public class BookController {
 
   @Autowired
   private BookRepository repository;
+
+  @Autowired
+  private CategoryRepository categoryRepository;
   
   @GetMapping("/index")
   public String index() {
@@ -32,6 +35,7 @@ public class BookController {
   @GetMapping("/add")
   public String getAddBookForm(Model model) {
       model.addAttribute("book", new Book());
+      model.addAttribute("categories", categoryRepository.findAll());
       return "addbook";
   }
 
