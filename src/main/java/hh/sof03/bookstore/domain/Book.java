@@ -22,13 +22,14 @@ public class Book {
   @JoinColumn(name = "categoryid")
   private Category category;
 
-  public Book(String title, String author, int publicationYear, String isbn, double price) {
+  public Book(String title, String author, int publicationYear, String isbn, double price, Category category) {
     super();
     this.title = title;
     this.author = author;
     this.publicationYear = publicationYear;
     this.isbn = isbn;
     this.price = price;
+    this.category = category;
   }
 
   public Book() {}
