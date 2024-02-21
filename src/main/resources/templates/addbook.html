@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
   <title>Add Book</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
 </head>
+
 <body>
   <header>
     <nav>
@@ -15,16 +17,26 @@
   <main>
     <form th:object="${book}" th:action="@{save}" action="#" method="post">
       <label for="author">Author:</label>
-      <input type="text" id="author" name="author" th:field="*{author}" />
+      <input type="text" id="author" name="author" th:field="*{author}" required />
       <label for="title">Title:</label>
-      <input type="text" id="title" name="title" th:field="*{title}" />
+      <input type="text" id="title" name="title" th:field="*{title}" required />
       <label for="isbn">ISBN:</label>
-      <input type="text" id="isbn" name="isbn" th:field="*{isbn}" />
+      <input type="text" id="isbn" name="isbn" th:field="*{isbn}" value="" />
       <label for="publicationYear">Published:</label>
-      <input type="text" id="publicationYear" name="publicationYear" th:field="*{publicationYear}" />
+
+      <input type="text" inputmode="numeric" id="publicationYear" name="publicationYear" th:field="*{publicationYear}" onfocus="this.value=''"/>
+
+      <label for="categorylist">Category:</label>
+      <select id="categorylist" style="height: 30px; width: fit-content;" th:field="*{category}">
+        <option value="" th:disabled th:selected>Select a category</option>
+        <option th:each="category : ${categories}" th:value="${category.categoryid}" th:text="${category.name}"></option>
+      </select>
+      
+
       <input type="submit" value="Save" class="btn btn-success" />
     </form>
   </main>
   <script src="/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
 </body>
+
 </html>
