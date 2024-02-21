@@ -36,21 +36,14 @@ public class BookstoreApplication {
         log.info(category.toString());
       }
 
-      Book book1 = new Book("The Lord of the Rings", "J.R.R. Tolkien", 1954, "0-395-19395-8", 19.99);
-      Book book2 = new Book("Harry Potter and the Philosopher's Stone", "J.K. Rowling", 1997, "0-7475-3269-9", 15.99);
-      Book book3 = new Book("The Hobbit", "J.R.R. Tolkien", 1937, "0-395-19395-8", 19.99);
-      Book book4 = new Book("The Lion, the Witch and the Wardrobe", "C.S. Lewis", 1950, "0-06-447104-7", 12.99);
+      Book book1 = new Book("The Lord of the Rings", "J.R.R. Tolkien", 1954, "0-395-19395-8", 19.99, category1);
+      Book book2 = new Book("Harry Potter and the Philosopher's Stone", "J.K. Rowling", 1997, "0-7475-3269-9", 15.99, category1);
+      Book book3 = new Book("The Hobbit", "J.R.R. Tolkien", 1937, "0-395-19395-8", 19.99, category1);
+      Book book4 = new Book("The Lion, the Witch and the Wardrobe", "C.S. Lewis", 1950, "0-06-447104-7", 12.99, category2);
 
-      book1.setCategory(category1);
       bookRepository.save(book1);
-
-      book2.setCategory(category1);
       bookRepository.save(book2);
-
-      book3.setCategory(category1);
       bookRepository.save(book3);
-
-      book4.setCategory(category2);
       bookRepository.save(book4);
 
       log.info("fetch all books");
