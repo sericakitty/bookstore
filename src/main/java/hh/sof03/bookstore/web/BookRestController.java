@@ -51,7 +51,43 @@ public class BookRestController {
     bookRepository.save(book);
 
     return book;
-  }  
+  }
+
+  @PostMapping("/books/{id}")
+  public Optional<Book> updateBookRest(@PathVariable("id") Long bookId, @RequestBody Book bookObject) {
+    Optional<Book> book = bookRepository.findById(bookId);
+    if (book.isPresent()) {
+
+      if (bookObject.getTitle() != null) {
+        book.get().setTitle(bookObject.getTitle());
+      }
+
+      if (bookObject.getAuthor() != null) {
+        book.get().setAuthor(bookObject.getAuthor());
+      }
+
+      if (bookObject.getPublicationYear() != 0){
+        book.get().setPublicationYear(bookObject.getPublicationYear());
+      }
+
+      if (bookObject.getIsbn() != null) {
+        book.get().setIsbn(bookObject.getIsbn());
+      }
+
+      if (bookObject.getPrice() != 0) {
+        book.get().setPrice(bookObject.getPrice());
+      }
+
+      if (bookObject.getCategory() != null) {
+        Category category = categoryRepository.findByName(bookObject.getCategory().getName());
+        book.get().setCategory(category);
+      }
+
+      bookRepository.save(book.get());
+    }
+    
+    return book;
+  }
   
 
 }
