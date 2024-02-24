@@ -9,6 +9,8 @@ target/
 *.DS_Store
 */**/.DS_Store
 
+requests
+
 ### STS ###
 .apt_generated
 .classpath
