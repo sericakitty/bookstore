@@ -37,6 +37,17 @@ public class BookRestController {
     return bookRepository.findById(bookId);
   }
 
+  @GetMapping("/books/title/{title}")
+  public Book findBookByTitleRest(@PathVariable("title") String title) {
+    Book book = bookRepository.findByTitle(title);
+
+    if (book == null) {
+      throw new IllegalArgumentException("Book not found");
+    }
+
+    return book;
+  }
+
   @PostMapping("/books")
   public Book saveBookRest(@RequestBody Book bookObject) {
     Book book = new Book();
