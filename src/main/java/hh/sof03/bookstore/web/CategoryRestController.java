@@ -34,6 +34,17 @@ public class CategoryRestController {
     return categoryExists;
   }
 
+  @GetMapping("/categories/name/{name}")
+  public Category findCategoryByNameRest(@PathVariable("name") String name) {
+    Category categoryExists = categoryRepository.findByName(name);
+
+    if (categoryExists == null) {
+      throw new IllegalArgumentException("Category not found");
+    }
+
+    return categoryExists;
+  }
+
   @PostMapping("/categories")
   public Category saveCategoryRest(@RequestBody Category category) {
     
