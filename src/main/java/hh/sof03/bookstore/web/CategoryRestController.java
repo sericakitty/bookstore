@@ -34,7 +34,7 @@ public class CategoryRestController {
     return categoryExists;
   }
 
-  @GetMapping("/categories/name/{name}")
+  @GetMapping("/categories/search/findByName?name={name}")
   public Category findCategoryByNameRest(@PathVariable("name") String name) {
     Category categoryExists = categoryRepository.findByName(name);
 
