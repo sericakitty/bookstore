@@ -37,15 +37,16 @@ public class BookRestController {
     return bookRepository.findById(bookId);
   }
 
-  @GetMapping("/books/title/{title}")
+  @GetMapping("/books/search/findByTitle?title={title}")
   public Book findBookByTitleRest(@PathVariable("title") String title) {
-    Book book = bookRepository.findByTitle(title);
+    List <Book> books = bookRepository.findByTitle(title);
 
-    if (book == null) {
+    if (books.isEmpty()) {
       throw new IllegalArgumentException("Book not found");
     }
+    
+    return books.get(0);
 
-    return book;
   }
 
   @PostMapping("/books")
