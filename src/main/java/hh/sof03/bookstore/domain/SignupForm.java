@@ -19,6 +19,9 @@ public class SignupForm {
   @NotEmpty
   private String role = "USER";
 
+  public SignupForm() {
+  }
+
 	public String getUsername() {
 		return username;
 	}
