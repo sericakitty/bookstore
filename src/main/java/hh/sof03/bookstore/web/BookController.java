@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
@@ -67,6 +68,7 @@ public class BookController {
   }
   
   @GetMapping("/delete/{id}")
+  @PreAuthorize("hasAuthority('ADMIN')")
   public String deleteBook(@PathVariable("id") Long id, Model model) {
       repository.deleteById(id);
       return "redirect:/booklist";
