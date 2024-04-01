@@ -2,6 +2,7 @@ package hh.sof03.bookstore;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -28,12 +29,15 @@ public class WebSecurityConfig  {
   @Bean
   public SecurityFilterChain configure(HttpSecurity http) throws Exception {
     http
-      .authorizeHttpRequests(authorize -> authorize
-        .requestMatchers(antMatcher("/css/**")).permitAll() // Enable css when logged out
-        .requestMatchers(antMatcher("/signup")).permitAll()
-        .requestMatchers(antMatcher("/saveuser")).permitAll()
-        .anyRequest().authenticated()
-      )
+    .authorizeHttpRequests(authorize -> authorize
+    .requestMatchers(antMatcher("/css/**")).permitAll() // Enable css when logged out
+    .requestMatchers(antMatcher("/signup")).permitAll()
+    .requestMatchers(antMatcher("/saveuser")).permitAll()
+    .requestMatchers(antMatcher(HttpMethod.GET, "/api/books")).permitAll()
+    .requestMatchers(antMatcher(HttpMethod.GET, "/api/books/*")).permitAll()
+    .requestMatchers(antMatcher(HttpMethod.DELETE, "/api/books/*")).hasAuthority("ADMIN")
+    .anyRequest().authenticated()
+    )
       .formLogin(formLogin -> formLogin
         .loginPage("/login")
         .defaultSuccessUrl("/booklist", true)
